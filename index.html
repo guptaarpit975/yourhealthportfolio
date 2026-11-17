@@ -3,1819 +3,642 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>YourHealthFolio — Health records, prescriptions and appointments in one place</title>
     <meta
       name="description"
-      content="Your Health Portfolio brings health records, prescriptions, reports, and care teams into one clear, connected place."
+      content="YourHealthFolio connects patients, doctors and clinics: prescriptions with PDF and print, vaccinations, diagnostic reports, record sharing, appointments and an AI assistant that explains your own health records."
     />
-    <meta name="theme-color" content="#0b2540" />
-    <meta property="og:title" content="Your Health Portfolio | Carefolio" />
-    <meta property="og:description" content="Your health, one connected story." />
-    <meta property="og:url" content="https://yourhealthfolio.in/" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#0a2540" />
     <link rel="canonical" href="https://yourhealthfolio.in/" />
-    <title>Your Health Portfolio | Carefolio</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="YourHealthFolio" />
+    <meta property="og:title" content="YourHealthFolio — Your health, one connected story" />
+    <meta property="og:description" content="Prescriptions, vaccinations, lab reports, appointments and an AI assistant for your own records — for patients, doctors and clinics." />
+    <meta property="og:url" content="https://yourhealthfolio.in/" />
+    <meta property="og:image" content="https://yourhealthfolio.in/assets/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://yourhealthfolio.in/assets/og-image.jpg" />
     <link
       rel="icon"
       type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%232b6bea'/%3E%3Cpath d='M13 34h10l4-13 9 27 5-14h10' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%232563eb'/%3E%3Cpath d='M13 34h10l4-13 9 27 5-14h10' fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "YourHealthFolio",
+        "url": "https://yourhealthfolio.in/",
+        "email": "support@yourhealthfolio.in",
+        "contactPoint": { "@type": "ContactPoint", "email": "support@yourhealthfolio.in", "contactType": "customer support" }
+      }
+    </script>
     <style>
       :root {
         --ink: #10283f;
         --ink-soft: #4f6579;
+        --ink-faint: #7a8ea1;
         --navy: #0a2540;
-        --navy-2: #103757;
+        --navy-2: #0f3354;
         --blue: #2563eb;
-        --blue-dark: #184fc6;
-        --blue-soft: #e9f1ff;
+        --blue-dark: #1b4fc4;
+        --blue-soft: #eaf1ff;
+        --violet: #6d5cf0;
         --cyan: #70d7e3;
-        --sky: #dbeaff;
+        --green: #2f9e6e;
         --paper: #ffffff;
         --mist: #f4f8fd;
-        --line: #dce7f1;
-        --radius-sm: 14px;
-        --radius-md: 22px;
-        --radius-lg: 34px;
-        --shadow: 0 28px 80px rgba(17, 56, 90, 0.12);
+        --line: #dfe8f1;
+        --radius-sm: 12px;
+        --radius-md: 20px;
+        --radius-lg: 30px;
+        --shadow: 0 30px 80px rgba(17, 56, 90, 0.14);
+        --shadow-soft: 0 14px 40px rgba(17, 56, 90, 0.08);
+        --container: min(1200px, calc(100% - 40px));
       }
 
-      * {
-        box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; scroll-padding-top: 84px; }
       body {
         margin: 0;
         color: var(--ink);
         background: var(--paper);
-        font-family:
-          Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
-          sans-serif;
+        font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         font-size: 16px;
-        line-height: 1.55;
+        line-height: 1.6;
         text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
       }
+      body.menu-open { overflow: hidden; }
+      a { color: inherit; text-decoration: none; }
+      img, video, svg { display: block; max-width: 100%; }
+      button { font: inherit; color: inherit; cursor: pointer; }
+      a:focus-visible, button:focus-visible { outline: 3px solid #7aa7ff; outline-offset: 3px; border-radius: 8px; }
+      h1, h2, h3, p { margin-top: 0; }
+      .container { width: var(--container); margin-inline: auto; }
+      .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+      .skip-link { position: absolute; left: 16px; top: -60px; z-index: 100; padding: 10px 16px; border-radius: 10px; background: #fff; color: var(--navy); font-weight: 700; }
+      .skip-link:focus { top: 12px; }
 
-      body.menu-open {
-        overflow: hidden;
-      }
+      /* ---------- Header ---------- */
+      .site-header { position: fixed; z-index: 50; inset: 0 0 auto; color: #fff; transition: background 220ms ease, box-shadow 220ms ease, color 220ms ease; }
+      .site-header.scrolled { background: rgba(255, 255, 255, 0.92); color: var(--ink); box-shadow: 0 1px 0 var(--line), 0 10px 30px rgba(10, 37, 64, 0.06); backdrop-filter: saturate(160%) blur(14px); }
+      .nav-shell { min-height: 74px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+      .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 1.22rem; font-weight: 800; letter-spacing: -0.035em; }
+      .brand-mark { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 11px; color: #fff; background: var(--blue); box-shadow: 0 10px 22px rgba(37, 99, 235, 0.3); }
+      .brand-dot { margin-left: -9px; color: #7fb0ff; }
+      .site-header.scrolled .brand-dot { color: var(--blue); }
+      .desktop-nav { display: flex; align-items: center; gap: 28px; font-size: 0.92rem; font-weight: 600; }
+      .desktop-nav a:not(.nav-cta) { opacity: 0.78; transition: opacity 150ms; }
+      .desktop-nav a:not(.nav-cta):hover { opacity: 1; }
+      .nav-cta { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; color: #fff; background: var(--blue); box-shadow: 0 10px 22px rgba(37, 99, 235, 0.28); }
+      .nav-cta:hover { background: #3473f2; }
+      .menu-button { display: none; width: 44px; height: 44px; place-items: center; padding: 0; border: 1px solid currentColor; border-color: rgba(127, 150, 175, 0.4); border-radius: 12px; background: transparent; }
+      .mobile-nav { display: none; }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+      /* ---------- Buttons ---------- */
+      .button { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 0 22px; border: 1px solid transparent; border-radius: 14px; font-size: 0.95rem; font-weight: 700; transition: transform 160ms ease, background 160ms ease, border-color 160ms ease; }
+      .button:hover { transform: translateY(-2px); }
+      .button-primary { color: #fff; background: var(--blue); box-shadow: 0 16px 32px rgba(15, 73, 204, 0.3); }
+      .button-primary:hover { background: #3473f2; }
+      .button-ghost { color: #eef6ff; border-color: rgba(255, 255, 255, 0.24); background: rgba(255, 255, 255, 0.06); }
+      .button-ghost:hover { background: rgba(255, 255, 255, 0.12); }
+      .button-outline { color: var(--ink); border-color: var(--line); background: #fff; }
+      .button-outline:hover { border-color: #b9cbe0; }
 
-      button,
-      a {
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      a:focus-visible,
-      button:focus-visible {
-        outline: 3px solid #7aa7ff;
-        outline-offset: 4px;
-      }
-
-      svg {
-        display: block;
-      }
-
-      .container {
-        width: min(1180px, calc(100% - 44px));
-        margin-inline: auto;
-      }
-
-      .site-header {
-        position: absolute;
-        z-index: 20;
-        inset: 0 0 auto;
-        color: #fff;
-      }
-
-      .nav-shell {
-        min-height: 88px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 28px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.13);
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 11px;
-        font-size: 1.3rem;
-        font-weight: 750;
-        letter-spacing: -0.04em;
-      }
-
-      .brand-mark {
-        display: grid;
-        width: 36px;
-        height: 36px;
-        place-items: center;
-        border-radius: 11px;
-        color: white;
-        background: var(--blue);
-        box-shadow: 0 10px 22px rgba(37, 99, 235, 0.28);
-      }
-
-      .brand-dot {
-        margin-left: -8px;
-        color: #8db6ff;
-      }
-
-      .desktop-nav {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-        color: #c7d7e6;
-        font-size: 0.9rem;
-        font-weight: 600;
-      }
-
-      .desktop-nav a:not(.nav-cta):hover {
-        color: white;
-      }
-
-      .nav-cta {
-        padding: 11px 17px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        border-radius: 999px;
-        color: white;
-        background: rgba(255, 255, 255, 0.08);
-        backdrop-filter: blur(12px);
-      }
-
-      .nav-cta:hover {
-        background: rgba(255, 255, 255, 0.15);
-      }
-
-      .menu-button {
-        display: none;
-        width: 44px;
-        height: 44px;
-        place-items: center;
-        padding: 0;
-        color: white;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        border-radius: 13px;
-      }
-
-      .mobile-nav {
-        display: none;
-      }
-
+      /* ---------- Hero ---------- */
       .hero {
         position: relative;
-        min-height: 810px;
         overflow: hidden;
         color: #fff;
         background:
-          radial-gradient(circle at 86% 38%, rgba(72, 128, 205, 0.4), transparent 28%),
-          radial-gradient(circle at 8% 112%, rgba(59, 178, 197, 0.2), transparent 37%),
-          linear-gradient(135deg, #071c31 0%, #0b2c49 60%, #123f63 100%);
+          radial-gradient(circle at 82% 30%, rgba(72, 128, 205, 0.42), transparent 30%),
+          radial-gradient(circle at 6% 110%, rgba(59, 178, 197, 0.22), transparent 38%),
+          linear-gradient(135deg, #071c31 0%, #0b2c49 58%, #123f63 100%);
+      }
+      .hero::before { content: ""; position: absolute; width: 680px; height: 680px; right: -260px; top: -40px; border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 50%; box-shadow: 0 0 0 90px rgba(255, 255, 255, 0.022), 0 0 0 180px rgba(255, 255, 255, 0.015); }
+      .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 52px; align-items: center; padding: 150px 0 96px; }
+      .eyebrow { display: inline-flex; align-items: center; gap: 10px; color: #b9d0e3; font-size: 0.74rem; font-weight: 750; letter-spacing: 0.17em; text-transform: uppercase; }
+      .eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 5px rgba(112, 215, 227, 0.12); }
+      h1 { margin: 22px 0 22px; font-size: clamp(2.6rem, 4.7vw, 4.4rem); font-weight: 650; letter-spacing: -0.055em; line-height: 1.02; }
+      h1 span { color: #8bb8ff; }
+      .hero-copy > p { max-width: 560px; margin-bottom: 32px; color: #c6d6e4; font-size: 1.12rem; line-height: 1.7; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+      .hero-proof { display: flex; flex-wrap: wrap; gap: 10px 22px; margin-top: 30px; color: #9fb6c9; font-size: 0.86rem; }
+      .hero-proof span { display: inline-flex; align-items: center; gap: 8px; }
+      .hero-proof svg { color: var(--cyan); }
+      .hero-stage { position: relative; }
+      .hero-badge { position: absolute; right: -18px; top: -34px; z-index: 2; display: flex; align-items: center; gap: 12px; max-width: 290px; padding: 14px 16px; border-radius: 18px; color: var(--ink); background: #fff; box-shadow: 0 24px 60px rgba(0, 12, 30, 0.35); }
+      .hero-badge span { display: grid; flex: none; width: 40px; height: 40px; place-items: center; border-radius: 12px; color: #fff; background: linear-gradient(135deg, var(--blue), var(--violet)); }
+      .hero-badge b { display: block; font-size: 0.92rem; line-height: 1.3; }
+      .hero-badge small { display: block; color: var(--ink-soft); font-size: 0.78rem; line-height: 1.4; }
+
+      /* ---------- Device frame (shared by hero and tours) ---------- */
+      .frame { position: relative; overflow: hidden; border: 1px solid rgba(16, 40, 63, 0.12); border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+      .hero .frame { border-color: rgba(255, 255, 255, 0.22); box-shadow: 0 42px 100px rgba(0, 12, 30, 0.45); }
+      .frame-bar { height: 40px; display: flex; align-items: center; gap: 7px; padding: 0 14px; border-bottom: 1px solid #e6edf4; background: #f6f9fc; color: var(--ink-soft); font-size: 0.76rem; font-weight: 600; }
+      .frame-bar i { width: 10px; height: 10px; border-radius: 50%; background: #d7e0ea; }
+      .frame-bar i:nth-child(1) { background: #ff6159; }
+      .frame-bar i:nth-child(2) { background: #ffbd2e; }
+      .frame-bar i:nth-child(3) { background: #28c941; }
+      .frame-title { flex: 1 1 auto; min-width: 0; margin-left: 10px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+      .frame-toggle { flex: none; margin-left: auto; display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: #fff; color: var(--ink-soft); font-size: 0.74rem; font-weight: 700; }
+      .frame-toggle:hover { color: var(--ink); }
+      .frame-video { position: relative; aspect-ratio: 16 / 10; background: #eef3f8; }
+      .frame-video video { width: 100%; height: 100%; object-fit: cover; }
+      .play-overlay { position: absolute; inset: 0; display: none; place-items: center; border: 0; background: rgba(10, 37, 64, 0.18); }
+      .play-overlay span { display: grid; width: 74px; height: 74px; place-items: center; border-radius: 50%; color: #fff; background: rgba(37, 99, 235, 0.95); box-shadow: 0 18px 40px rgba(15, 73, 204, 0.4); }
+      .frame.is-paused .play-overlay { display: grid; }
+
+      /* ---------- Feature index strip ---------- */
+      .index-strip { position: relative; z-index: 2; margin-top: -44px; }
+      .index-card { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; box-shadow: var(--shadow-soft); }
+      .index-card a { display: flex; align-items: center; gap: 12px; padding: 18px 20px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); font-size: 0.92rem; font-weight: 650; transition: background 150ms; }
+      .index-card a:hover { background: var(--mist); }
+      .index-card a:nth-child(4n) { border-right: 0; }
+      .index-card a:nth-last-child(-n + 4) { border-bottom: 0; }
+      .index-card small { display: block; color: var(--ink-faint); font-size: 0.74rem; font-weight: 600; letter-spacing: 0.02em; }
+      .index-icon { display: grid; flex: none; width: 38px; height: 38px; place-items: center; border-radius: 11px; color: var(--blue); background: var(--blue-soft); }
+      .index-icon.ai { color: #fff; background: linear-gradient(135deg, var(--blue), var(--violet)); }
+
+      /* ---------- Sections ---------- */
+      .section { padding: 112px 0; }
+      .section-kicker { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 16px; color: var(--blue); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; }
+      .section-title { max-width: 760px; margin-bottom: 18px; font-size: clamp(2rem, 3.6vw, 3.1rem); font-weight: 700; letter-spacing: -0.045em; line-height: 1.08; }
+      .section-intro { max-width: 640px; margin-bottom: 0; color: var(--ink-soft); font-size: 1.08rem; }
+      .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 52px; }
+      .role-tag { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 8px; border-radius: 999px; background: var(--blue-soft); color: var(--blue-dark); font-size: 0.84rem; font-weight: 700; }
+      .role-tag span { display: grid; width: 28px; height: 28px; place-items: center; border-radius: 50%; color: #fff; background: var(--blue); }
+
+      /* ---------- Product tours ---------- */
+      .tour { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 44px; align-items: start; }
+      .tour-list { display: grid; gap: 10px; }
+      .tour-item { position: relative; display: grid; grid-template-columns: 34px 1fr; gap: 4px 14px; width: 100%; padding: 18px 18px 20px; overflow: hidden; border: 1px solid transparent; border-radius: 16px; background: transparent; text-align: left; transition: background 180ms, border-color 180ms, box-shadow 180ms; }
+      .tour-item:hover { background: rgba(37, 99, 235, 0.05); }
+      .tour-item[aria-selected="true"] { border-color: var(--line); background: #fff; box-shadow: var(--shadow-soft); }
+      .tour-num { grid-row: span 2; display: grid; width: 34px; height: 34px; place-items: center; border-radius: 10px; color: var(--ink-soft); background: #e9eff6; font-size: 0.8rem; font-weight: 800; }
+      .tour-item[aria-selected="true"] .tour-num { color: #fff; background: var(--blue); }
+      .tour-item b { align-self: center; font-size: 1.02rem; line-height: 1.35; letter-spacing: -0.01em; }
+      .tour-item .tour-desc { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.55; }
+      .tour-item .tour-bar { position: absolute; left: 18px; right: 18px; bottom: 8px; height: 3px; overflow: hidden; border-radius: 3px; background: transparent; }
+      .tour-item[aria-selected="true"] .tour-bar { background: #e6edf6; }
+      .tour-item .tour-bar i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--blue); transition: width 260ms linear; }
+      .tour-item.ai-item[aria-selected="true"] .tour-num { background: linear-gradient(135deg, var(--blue), var(--violet)); }
+      .ai-pill { display: inline-block; margin-left: 6px; padding: 1px 8px; border-radius: 999px; color: #fff; background: linear-gradient(135deg, var(--blue), var(--violet)); font-size: 0.66rem; font-weight: 800; letter-spacing: 0.06em; vertical-align: 2px; }
+      .tour-note { margin: 14px 2px 0; color: var(--ink-faint); font-size: 0.8rem; }
+
+      .section.doctors { background: var(--mist); }
+      .section.clinics { color: #fff; background: radial-gradient(circle at 90% 10%, rgba(72, 128, 205, 0.32), transparent 34%), linear-gradient(160deg, #081f36 0%, #0c2d4b 100%); }
+      .clinics .section-kicker { color: #8db6ff; }
+      .clinics .section-intro, .clinics .tour-item .tour-desc { color: #a9bfd2; }
+      .clinics .role-tag { color: #cfe0ff; background: rgba(255, 255, 255, 0.08); }
+      .clinics .tour-item:hover { background: rgba(255, 255, 255, 0.05); }
+      .clinics .tour-item[aria-selected="true"] { border-color: rgba(255, 255, 255, 0.14); background: rgba(255, 255, 255, 0.07); box-shadow: none; }
+      .clinics .tour-num { color: #b9cde0; background: rgba(255, 255, 255, 0.08); }
+      .clinics .tour-item[aria-selected="true"] .tour-bar { background: rgba(255, 255, 255, 0.12); }
+      .clinics .tour-item .tour-bar i { background: #7fb0ff; }
+      .clinics .tour-note { color: #7f97ad; }
+      .clinics .frame { border-color: rgba(255, 255, 255, 0.16); box-shadow: 0 40px 100px rgba(0, 8, 20, 0.5); }
+
+      /* ---------- Trust ---------- */
+      .trust-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+      .trust-card { padding: 28px; border: 1px solid var(--line); border-radius: var(--radius-md); background: #fff; }
+      .trust-card .icon { display: grid; width: 46px; height: 46px; margin-bottom: 20px; place-items: center; border-radius: 14px; color: var(--blue); background: var(--blue-soft); }
+      .trust-card h3 { margin-bottom: 8px; font-size: 1.1rem; letter-spacing: -0.02em; }
+      .trust-card p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
+      .trust-card.wide { grid-column: span 2; display: grid; grid-template-columns: auto 1fr; gap: 0 22px; align-items: start; background: linear-gradient(135deg, #f3f6ff, #f6f2ff); border-color: #e2e2fb; }
+      .trust-card.wide .icon { color: #fff; background: linear-gradient(135deg, var(--blue), var(--violet)); }
+
+      /* ---------- More features ---------- */
+      .more { padding: 0 0 112px; }
+      .more-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); }
+      .more-item { padding: 26px 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+      .more-item:nth-child(4n) { border-right: 0; }
+      .more-item:nth-last-child(-n + 4) { border-bottom: 0; }
+      .more-item svg { margin-bottom: 14px; color: var(--blue); }
+      .more-item b { display: block; margin-bottom: 4px; font-size: 0.98rem; letter-spacing: -0.01em; }
+      .more-item span { color: var(--ink-soft); font-size: 0.88rem; line-height: 1.55; }
+
+      /* ---------- Contact ---------- */
+      .contact { padding: 0 0 112px; }
+      .contact-panel { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 40px; align-items: center; overflow: hidden; padding: 56px; border-radius: var(--radius-lg); color: #fff; background: radial-gradient(circle at 100% 0%, rgba(109, 92, 240, 0.45), transparent 40%), linear-gradient(135deg, #1d4fd8, #2563eb 55%, #3b7bf5); box-shadow: 0 40px 90px rgba(29, 79, 216, 0.3); }
+      .contact-panel h2 { margin-bottom: 14px; font-size: clamp(1.9rem, 3.4vw, 2.8rem); letter-spacing: -0.045em; line-height: 1.1; }
+      .contact-panel p { margin: 0; color: #dbe7ff; font-size: 1.05rem; }
+      .contact-box { padding: 26px; border: 1px solid rgba(255, 255, 255, 0.25); border-radius: 22px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(6px); }
+      .contact-box small { display: block; margin-bottom: 6px; color: #cfe0ff; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+      .contact-email { display: block; margin-bottom: 20px; font-size: clamp(1.15rem, 2.3vw, 1.5rem); font-weight: 750; letter-spacing: -0.02em; word-break: break-all; }
+      .contact-email:hover { text-decoration: underline; text-underline-offset: 4px; }
+      .contact-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+      .contact-actions .button { min-height: 46px; }
+      .button-white { color: var(--blue-dark); background: #fff; }
+      .button-white:hover { background: #f1f6ff; }
+      .button-glass { color: #fff; border-color: rgba(255, 255, 255, 0.35); background: transparent; }
+      .button-glass:hover { background: rgba(255, 255, 255, 0.1); }
+      .copy-status { min-height: 1.4em; margin-top: 10px; color: #dbe7ff; font-size: 0.84rem; }
+
+      /* ---------- Footer ---------- */
+      footer { padding: 56px 0 34px; color: #b5c6d6; background: #071c31; }
+      .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 32px; padding-bottom: 32px; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+      footer .brand { color: #fff; }
+      .footer-about { max-width: 380px; margin: 16px 0 0; font-size: 0.92rem; }
+      .footer-links { display: flex; flex-wrap: wrap; gap: 12px 26px; font-size: 0.92rem; font-weight: 600; }
+      .footer-links a:hover, .footer-mail:hover { color: #fff; }
+      .footer-mail { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; color: #dce8f5; font-weight: 650; }
+      .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; padding-top: 24px; font-size: 0.8rem; color: #7f97ad; }
+
+      /* ---------- Reveal ---------- */
+      .reveal { opacity: 0; transform: translateY(18px); transition: opacity 600ms ease, transform 600ms ease; }
+      .reveal.visible { opacity: 1; transform: none; }
+
+      /* ---------- Responsive ---------- */
+      @media (max-width: 1080px) {
+        .hero-grid { grid-template-columns: 1fr; gap: 64px; padding-top: 130px; }
+        .hero-copy { max-width: 720px; }
+        .hero-badge { right: 16px; top: -30px; }
+        .tour { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+        .tour-media { order: -1; }
+        .tour-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .index-card { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .index-card a:nth-child(4n) { border-right: 1px solid var(--line); }
+        .index-card a:nth-child(2n) { border-right: 0; }
+        .index-card a:nth-last-child(-n + 4) { border-bottom: 1px solid var(--line); }
+        .index-card a:nth-last-child(-n + 2) { border-bottom: 0; }
+        .trust-grid { grid-template-columns: 1fr 1fr; }
+        .more-grid { grid-template-columns: 1fr 1fr; }
+        .more-item:nth-child(4n) { border-right: 1px solid var(--line); }
+        .more-item:nth-child(2n) { border-right: 0; }
+        .more-item:nth-last-child(-n + 4) { border-bottom: 1px solid var(--line); }
+        .more-item:nth-last-child(-n + 2) { border-bottom: 0; }
+        .contact-panel { grid-template-columns: 1fr; padding: 40px; }
+        .section-head { flex-direction: column; align-items: flex-start; gap: 18px; }
+      }
+      @media (max-width: 860px) {
+        .desktop-nav { display: none; }
+        .menu-button { display: grid; }
+        .mobile-nav { position: fixed; inset: 74px 0 0; display: none; flex-direction: column; gap: 4px; padding: 20px; color: var(--ink); background: #fff; }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a { padding: 14px 12px; border-bottom: 1px solid var(--line); font-size: 1.05rem; font-weight: 650; }
+        .mobile-nav .button { margin-top: 16px; border-bottom: 0; color: #fff; }
+        .site-header.menu-active { color: var(--ink); background: #fff; }
+      }
+      @media (max-width: 640px) {
+        :root { --container: calc(100% - 32px); }
+        .section { padding: 80px 0; }
+        .more, .contact { padding-bottom: 80px; }
+        .hero-grid { padding: 112px 0 84px; gap: 52px; }
+        .hero-copy > p { font-size: 1.02rem; }
+        .hero-actions .button { flex: 1 1 100%; }
+        .hero-badge { position: relative; left: auto; bottom: auto; margin: -20px 12px 0; max-width: none; }
+        .index-strip { margin-top: -28px; }
+        .index-card a { gap: 10px; padding: 14px 12px; font-size: 0.84rem; line-height: 1.3; }
+        .index-card small { display: none; }
+        .index-icon { width: 32px; height: 32px; border-radius: 9px; }
+        .index-icon svg { width: 16px; height: 16px; }
+        .tour-list { grid-template-columns: 1fr; gap: 6px; }
+        .tour-item { padding: 14px 14px 18px; }
+        .tour-item .tour-desc { display: none; }
+        .tour-item[aria-selected="true"] .tour-desc { display: block; }
+        .frame { border-radius: 14px; }
+        .frame-bar { height: 34px; }
+        .frame-bar i { width: 8px; height: 8px; }
+        .trust-grid, .more-grid, .tour-list { grid-template-columns: minmax(0, 1fr); }
+        .trust-card.wide { grid-column: auto; grid-template-columns: 1fr; }
+        .more-item, .more-item:nth-child(2n), .more-item:nth-child(4n) { border-right: 0; border-bottom: 1px solid var(--line); }
+        .more-item:last-child { border-bottom: 0; }
+        .contact-panel { padding: 30px 22px; border-radius: 24px; }
+        .contact-actions .button { flex: 1 1 100%; }
       }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        width: 620px;
-        height: 620px;
-        right: -240px;
-        top: 28px;
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 50%;
-        box-shadow:
-          0 0 0 80px rgba(255, 255, 255, 0.025),
-          0 0 0 160px rgba(255, 255, 255, 0.018);
-      }
-
-      .hero-grid {
-        position: relative;
-        z-index: 2;
-        display: grid;
-        grid-template-columns: minmax(0, 1.02fr) minmax(440px, 0.98fr);
-        gap: 78px;
-        align-items: center;
-        padding-top: 172px;
-        padding-bottom: 100px;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
-        color: #b9d0e3;
-        font-size: 0.72rem;
-        font-weight: 750;
-        letter-spacing: 0.17em;
-        text-transform: uppercase;
-      }
-
-      .eyebrow::before {
-        content: "";
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--cyan);
-        box-shadow: 0 0 0 5px rgba(112, 215, 227, 0.1);
-      }
-
-      h1,
-      h2,
-      h3,
-      p {
-        margin-top: 0;
-      }
-
-      h1 {
-        max-width: 680px;
-        margin: 24px 0 26px;
-        font-size: clamp(3.25rem, 6.2vw, 5.75rem);
-        font-weight: 520;
-        letter-spacing: -0.065em;
-        line-height: 0.99;
-      }
-
-      h1 span {
-        color: #8bb8ff;
-      }
-
-      .hero-copy > p {
-        max-width: 580px;
-        margin-bottom: 34px;
-        color: #c4d4e2;
-        font-size: 1.12rem;
-        line-height: 1.72;
-      }
-
-      .hero-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 13px;
-      }
-
-      .button {
-        min-height: 51px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        padding: 0 21px;
-        border: 1px solid transparent;
-        border-radius: 14px;
-        font-size: 0.92rem;
-        font-weight: 700;
-        transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
-      }
-
-      .button:hover {
-        transform: translateY(-2px);
-      }
-
-      .button-primary {
-        color: white;
-        background: var(--blue);
-        box-shadow: 0 16px 32px rgba(15, 73, 204, 0.3);
-      }
-
-      .button-primary:hover {
-        background: #3473f2;
-      }
-
-      .button-secondary {
-        color: #eef6ff;
-        border-color: rgba(255, 255, 255, 0.2);
-        background: rgba(255, 255, 255, 0.06);
-      }
-
-      .hero-note {
-        display: flex;
-        align-items: center;
-        gap: 9px;
-        margin-top: 32px;
-        color: #91a9bc;
-        font-size: 0.82rem;
-      }
-
-      .hero-note svg {
-        color: #79c8d4;
-      }
-
-      .product-stage {
-        position: relative;
-        min-height: 510px;
-        display: grid;
-        align-items: center;
-      }
-
-      .product-window {
-        position: relative;
-        overflow: hidden;
-        width: 100%;
-        min-height: 456px;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 27px;
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: 0 42px 90px rgba(0, 12, 30, 0.35);
-        transform: rotate(1.4deg);
-      }
-
-      .window-top {
-        height: 54px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 21px;
-        border-bottom: 1px solid #e8edf4;
-      }
-
-      .mini-brand {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-size: 0.8rem;
-        font-weight: 750;
-      }
-
-      .mini-brand span {
-        display: grid;
-        width: 23px;
-        height: 23px;
-        place-items: center;
-        border-radius: 7px;
-        color: white;
-        background: var(--blue);
-      }
-
-      .window-status {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        color: #5d7184;
-        font-size: 0.66rem;
-        font-weight: 700;
-      }
-
-      .window-status::before {
-        content: "";
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #4eb9a4;
-      }
-
-      .window-body {
-        display: grid;
-        grid-template-columns: 110px 1fr;
-        min-height: 400px;
-      }
-
-      .mini-sidebar {
-        padding: 23px 13px;
-        background: #f3f7fb;
-        border-right: 1px solid #e3eaf1;
-      }
-
-      .mini-avatar {
-        width: 36px;
-        height: 36px;
-        display: grid;
-        place-items: center;
-        margin: 0 auto 24px;
-        border-radius: 50%;
-        color: var(--blue-dark);
-        background: #dce9ff;
-        font-size: 0.67rem;
-        font-weight: 800;
-      }
-
-      .mini-nav-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 9px 8px;
-        margin-bottom: 4px;
-        border-radius: 8px;
-        color: #718397;
-        font-size: 0.59rem;
-        font-weight: 700;
-      }
-
-      .mini-nav-item.active {
-        color: var(--blue-dark);
-        background: #e5efff;
-      }
-
-      .mini-nav-item i {
-        width: 12px;
-        height: 12px;
-        border: 1.5px solid currentColor;
-        border-radius: 4px;
-      }
-
-      .dashboard {
-        padding: 24px 23px 18px;
-      }
-
-      .dashboard-label {
-        color: #8190a0;
-        font-size: 0.61rem;
-        font-weight: 750;
-        letter-spacing: 0.11em;
-        text-transform: uppercase;
-      }
-
-      .dashboard h3 {
-        margin: 5px 0 18px;
-        font-size: 1.35rem;
-        letter-spacing: -0.04em;
-      }
-
-      .patient-card {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 13px;
-        border: 1px solid #e1e8f0;
-        border-radius: 13px;
-        box-shadow: 0 8px 22px rgba(30, 67, 99, 0.05);
-      }
-
-      .patient-card .mini-avatar {
-        width: 34px;
-        height: 34px;
-        margin: 0;
-        color: #107a83;
-        background: #dcf4f4;
-      }
-
-      .patient-card b,
-      .record-card b {
-        display: block;
-        font-size: 0.7rem;
-      }
-
-      .patient-card small,
-      .record-card small {
-        display: block;
-        margin-top: 2px;
-        color: #8291a1;
-        font-size: 0.56rem;
-      }
-
-      .patient-tag {
-        margin-left: auto;
-        padding: 4px 7px;
-        border-radius: 99px;
-        color: #177067;
-        background: #e0f5ef;
-        font-size: 0.52rem;
-        font-weight: 750;
-      }
-
-      .timeline-label {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 21px 0 12px;
-      }
-
-      .timeline-label b {
-        font-size: 0.7rem;
-      }
-
-      .timeline-label span {
-        color: var(--blue);
-        font-size: 0.54rem;
-        font-weight: 700;
-      }
-
-      .record-list {
-        display: grid;
-        gap: 8px;
-      }
-
-      .record-card {
-        position: relative;
-        padding: 11px 12px 11px 33px;
-        border: 1px solid #e5ebf1;
-        border-radius: 10px;
-        background: #fbfdff;
-      }
-
-      .record-card::before {
-        content: "";
-        position: absolute;
-        left: 14px;
-        top: 15px;
-        width: 7px;
-        height: 7px;
-        border: 2px solid #fff;
-        border-radius: 50%;
-        background: var(--blue);
-        box-shadow: 0 0 0 1px #b9cef4;
-      }
-
-      .floating-report {
-        position: absolute;
-        right: -38px;
-        bottom: 18px;
-        width: 196px;
-        padding: 17px;
-        border: 1px solid rgba(255, 255, 255, 0.56);
-        border-radius: 17px;
-        color: var(--ink);
-        background: rgba(255, 255, 255, 0.94);
-        box-shadow: 0 24px 50px rgba(0, 20, 45, 0.25);
-        transform: rotate(-3deg);
-        backdrop-filter: blur(14px);
-      }
-
-      .floating-report > span {
-        display: grid;
-        width: 34px;
-        height: 34px;
-        place-items: center;
-        margin-bottom: 12px;
-        border-radius: 10px;
-        color: var(--blue);
-        background: var(--blue-soft);
-      }
-
-      .floating-report b {
-        display: block;
-        font-size: 0.75rem;
-      }
-
-      .floating-report small {
-        display: block;
-        margin-top: 5px;
-        color: #708295;
-        font-size: 0.6rem;
-        line-height: 1.45;
-      }
-
-      .role-strip {
-        border-bottom: 1px solid var(--line);
-        background: #fff;
-      }
-
-      .role-strip .container {
-        min-height: 94px;
-        display: grid;
-        grid-template-columns: 1.15fr repeat(3, 1fr);
-        align-items: center;
-      }
-
-      .role-strip p {
-        margin: 0;
-        color: #718294;
-        font-size: 0.73rem;
-        font-weight: 750;
-        letter-spacing: 0.13em;
-        text-transform: uppercase;
-      }
-
-      .role-pill {
-        min-height: 42px;
-        display: flex;
-        align-items: center;
-        gap: 11px;
-        padding-left: 30px;
-        border-left: 1px solid var(--line);
-        color: #456073;
-        font-size: 0.9rem;
-        font-weight: 650;
-      }
-
-      .role-pill span {
-        display: grid;
-        width: 33px;
-        height: 33px;
-        place-items: center;
-        border-radius: 10px;
-        color: var(--blue);
-        background: var(--blue-soft);
-      }
-
-      .section {
-        padding: 118px 0;
-      }
-
-      .section-kicker {
-        margin-bottom: 17px;
-        color: var(--blue-dark);
-        font-size: 0.72rem;
-        font-weight: 800;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
-
-      .section-title {
-        max-width: 740px;
-        margin-bottom: 22px;
-        font-size: clamp(2.35rem, 4.8vw, 4.3rem);
-        font-weight: 550;
-        letter-spacing: -0.055em;
-        line-height: 1.04;
-      }
-
-      .section-intro {
-        max-width: 620px;
-        color: var(--ink-soft);
-        font-size: 1.05rem;
-        line-height: 1.75;
-      }
-
-      .overview-grid {
-        display: grid;
-        grid-template-columns: 0.86fr 1.14fr;
-        gap: 90px;
-        align-items: center;
-      }
-
-      .care-path {
-        position: relative;
-        min-height: 530px;
-        padding: 46px;
-        overflow: hidden;
-        border-radius: var(--radius-lg);
-        color: white;
-        background:
-          radial-gradient(circle at 100% 0, rgba(86, 154, 245, 0.33), transparent 38%),
-          var(--navy);
-      }
-
-      .care-path::after {
-        content: "";
-        position: absolute;
-        inset: auto -110px -190px auto;
-        width: 400px;
-        height: 400px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-      }
-
-      .care-path-head {
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        align-items: flex-start;
-        margin-bottom: 42px;
-      }
-
-      .care-path-head h3 {
-        margin: 8px 0 0;
-        font-size: 1.5rem;
-        font-weight: 600;
-        letter-spacing: -0.03em;
-      }
-
-      .care-path-head small {
-        color: #91a9bd;
-        font-size: 0.67rem;
-        font-weight: 750;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
-
-      .path-number {
-        color: #7493af;
-        font-size: 0.75rem;
-      }
-
-      .path-item {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        grid-template-columns: 50px 1fr;
-        gap: 17px;
-        padding-bottom: 28px;
-      }
-
-      .path-item:not(:last-child)::before {
-        content: "";
-        position: absolute;
-        left: 24px;
-        top: 48px;
-        bottom: 0;
-        width: 1px;
-        background: rgba(255, 255, 255, 0.14);
-      }
-
-      .path-icon {
-        width: 50px;
-        height: 50px;
-        display: grid;
-        place-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        border-radius: 15px;
-        color: #9dbdf3;
-        background: rgba(255, 255, 255, 0.06);
-      }
-
-      .path-item b {
-        display: block;
-        margin-top: 2px;
-        font-size: 0.95rem;
-      }
-
-      .path-item p {
-        margin: 6px 0 0;
-        color: #9fb2c3;
-        font-size: 0.85rem;
-        line-height: 1.55;
-      }
-
-      .overview-copy .section-intro {
-        margin-bottom: 40px;
-      }
-
-      .benefit-list {
-        display: grid;
-        gap: 0;
-      }
-
-      .benefit {
-        display: grid;
-        grid-template-columns: 42px 1fr;
-        gap: 16px;
-        padding: 22px 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .benefit:last-child {
-        border-bottom: 1px solid var(--line);
-      }
-
-      .benefit-number {
-        color: var(--blue);
-        font-size: 0.78rem;
-        font-weight: 800;
-      }
-
-      .benefit b {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 1rem;
-      }
-
-      .benefit p {
-        margin: 0;
-        color: #65798b;
-        font-size: 0.92rem;
-      }
-
-      .features {
-        background: var(--mist);
-      }
-
-      .features-head {
-        display: flex;
-        justify-content: space-between;
-        gap: 50px;
-        align-items: end;
-        margin-bottom: 48px;
-      }
-
-      .features-head .section-title {
-        max-width: 650px;
-        margin-bottom: 0;
-      }
-
-      .features-head .section-intro {
-        max-width: 380px;
-        margin-bottom: 7px;
-      }
-
-      .feature-grid {
-        display: grid;
-        grid-template-columns: 1.05fr 0.95fr 0.95fr;
-        grid-auto-rows: minmax(255px, auto);
-        gap: 17px;
-      }
-
-      .feature-card {
-        position: relative;
-        overflow: hidden;
-        padding: 31px;
-        border: 1px solid #dfe8f1;
-        border-radius: var(--radius-md);
-        background: white;
-        transition: transform 180ms ease, box-shadow 180ms ease;
-      }
-
-      .feature-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 20px 45px rgba(18, 59, 91, 0.08);
-      }
-
-      .feature-card.primary {
-        grid-row: span 2;
-        color: white;
-        background:
-          radial-gradient(circle at 80% 85%, rgba(74, 142, 236, 0.34), transparent 36%),
-          var(--navy);
-        border-color: var(--navy);
-      }
-
-      .feature-icon {
-        width: 48px;
-        height: 48px;
-        display: grid;
-        place-items: center;
-        margin-bottom: 52px;
-        border-radius: 14px;
-        color: var(--blue);
-        background: var(--blue-soft);
-      }
-
-      .primary .feature-icon {
-        color: #b8d4ff;
-        background: rgba(255, 255, 255, 0.09);
-      }
-
-      .feature-card h3 {
-        margin-bottom: 10px;
-        font-size: 1.3rem;
-        letter-spacing: -0.03em;
-      }
-
-      .feature-card p {
-        margin-bottom: 0;
-        color: #6c7f91;
-        font-size: 0.92rem;
-        line-height: 1.65;
-      }
-
-      .feature-card.primary p {
-        color: #aebfd0;
-      }
-
-      .record-stack {
-        position: relative;
-        height: 218px;
-        margin-top: 58px;
-      }
-
-      .record-sheet {
-        position: absolute;
-        inset: 0 7px auto;
-        min-height: 150px;
-        padding: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 17px;
-        background: #153b5c;
-        box-shadow: 0 18px 40px rgba(0, 14, 31, 0.24);
-      }
-
-      .record-sheet:nth-child(2) {
-        transform: translateY(33px) scale(0.93);
-        opacity: 0.55;
-      }
-
-      .record-sheet:nth-child(1) {
-        z-index: 2;
-      }
-
-      .sheet-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-bottom: 14px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .sheet-top span {
-        color: #9eb2c5;
-        font-size: 0.61rem;
-      }
-
-      .sheet-top strong {
-        font-size: 0.7rem;
-      }
-
-      .sheet-lines {
-        display: grid;
-        gap: 8px;
-        margin-top: 16px;
-      }
-
-      .sheet-lines i {
-        width: 75%;
-        height: 5px;
-        border-radius: 99px;
-        background: rgba(255, 255, 255, 0.1);
-      }
-
-      .sheet-lines i:nth-child(2) {
-        width: 55%;
-      }
-
-      .sheet-lines i:nth-child(3) {
-        width: 66%;
-      }
-
-      .audiences {
-        overflow: hidden;
-      }
-
-      .audience-grid {
-        display: grid;
-        grid-template-columns: 0.72fr 1.28fr;
-        gap: 75px;
-        align-items: start;
-      }
-
-      .audience-intro {
-        position: sticky;
-        top: 36px;
-      }
-
-      .audience-list {
-        display: grid;
-        gap: 15px;
-      }
-
-      .audience-card {
-        position: relative;
-        display: grid;
-        grid-template-columns: 64px 1fr auto;
-        gap: 21px;
-        align-items: center;
-        min-height: 154px;
-        padding: 27px 30px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: var(--radius-md);
-        background: white;
-        transition: border-color 180ms ease, transform 180ms ease;
-      }
-
-      .audience-card:hover {
-        transform: translateX(5px);
-        border-color: #b6cdf4;
-      }
-
-      .audience-card::after {
-        content: attr(data-number);
-        position: absolute;
-        right: 22px;
-        bottom: -34px;
-        color: #f1f6fb;
-        font-size: 7rem;
-        font-weight: 800;
-        line-height: 1;
-        pointer-events: none;
-      }
-
-      .audience-icon {
-        width: 64px;
-        height: 64px;
-        display: grid;
-        place-items: center;
-        border-radius: 19px;
-        color: var(--blue);
-        background: var(--blue-soft);
-      }
-
-      .audience-card:nth-child(2) .audience-icon {
-        color: #0f7c86;
-        background: #e0f5f5;
-      }
-
-      .audience-card:nth-child(3) .audience-icon {
-        color: #8057b8;
-        background: #f0e9fb;
-      }
-
-      .audience-card h3 {
-        margin: 0 0 7px;
-        font-size: 1.18rem;
-        letter-spacing: -0.025em;
-      }
-
-      .audience-card p {
-        max-width: 490px;
-        margin: 0;
-        color: #64798c;
-        font-size: 0.9rem;
-      }
-
-      .audience-card > svg {
-        position: relative;
-        z-index: 2;
-        color: #8ba0b2;
-      }
-
-      .privacy {
-        padding-top: 0;
-      }
-
-      .privacy-panel {
-        position: relative;
-        display: grid;
-        grid-template-columns: 0.92fr 1.08fr;
-        gap: 70px;
-        align-items: center;
-        min-height: 410px;
-        padding: 65px;
-        overflow: hidden;
-        border-radius: var(--radius-lg);
-        color: white;
-        background: var(--navy);
-      }
-
-      .privacy-panel::before {
-        content: "";
-        position: absolute;
-        width: 340px;
-        height: 340px;
-        left: -170px;
-        bottom: -210px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        box-shadow:
-          0 0 0 62px rgba(255, 255, 255, 0.018),
-          0 0 0 124px rgba(255, 255, 255, 0.014);
-      }
-
-      .privacy-copy,
-      .privacy-points {
-        position: relative;
-        z-index: 1;
-      }
-
-      .privacy-copy .section-kicker {
-        color: #8fb6f3;
-      }
-
-      .privacy-copy h2 {
-        margin: 0 0 20px;
-        font-size: clamp(2.2rem, 4vw, 3.6rem);
-        font-weight: 540;
-        letter-spacing: -0.055em;
-        line-height: 1.03;
-      }
-
-      .privacy-copy p {
-        margin: 0;
-        color: #aabed0;
-        line-height: 1.7;
-      }
-
-      .privacy-points {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 13px;
-      }
-
-      .privacy-point {
-        min-height: 130px;
-        padding: 22px;
-        border: 1px solid rgba(255, 255, 255, 0.11);
-        border-radius: 17px;
-        background: rgba(255, 255, 255, 0.055);
-      }
-
-      .privacy-point svg {
-        margin-bottom: 17px;
-        color: #9abdf3;
-      }
-
-      .privacy-point b {
-        display: block;
-        font-size: 0.9rem;
-      }
-
-      .privacy-point span {
-        display: block;
-        margin-top: 5px;
-        color: #94aabd;
-        font-size: 0.78rem;
-      }
-
-      .closing {
-        padding: 120px 0 126px;
-        text-align: center;
-      }
-
-      .closing-mark {
-        width: 58px;
-        height: 58px;
-        display: grid;
-        place-items: center;
-        margin: 0 auto 27px;
-        border-radius: 18px;
-        color: white;
-        background: var(--blue);
-        box-shadow: 0 18px 35px rgba(37, 99, 235, 0.25);
-      }
-
-      .closing h2 {
-        max-width: 790px;
-        margin: 0 auto 20px;
-        font-size: clamp(2.5rem, 5.4vw, 4.85rem);
-        font-weight: 540;
-        letter-spacing: -0.06em;
-        line-height: 1.02;
-      }
-
-      .closing p {
-        max-width: 580px;
-        margin: 0 auto 31px;
-        color: var(--ink-soft);
-        font-size: 1.05rem;
-      }
-
-      .closing .button-primary {
-        min-width: 190px;
-      }
-
-      footer {
-        color: #b7c7d4;
-        background: #071b2d;
-      }
-
-      .footer-top {
-        min-height: 166px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 35px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .footer-top p {
-        max-width: 450px;
-        margin: 0;
-        font-size: 0.88rem;
-        line-height: 1.65;
-      }
-
-      .footer-links {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 26px;
-        font-size: 0.82rem;
-        font-weight: 650;
-      }
-
-      .footer-links a:hover {
-        color: white;
-      }
-
-      .footer-bottom {
-        min-height: 72px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        color: #70869a;
-        font-size: 0.75rem;
-      }
-
-      .reveal {
-        opacity: 0;
-        transform: translateY(18px);
-        transition: opacity 650ms ease, transform 650ms ease;
-      }
-
-      .reveal.visible {
-        opacity: 1;
-        transform: none;
-      }
-
-      @media (max-width: 980px) {
-        .desktop-nav {
-          display: none;
-        }
-
-        .menu-button {
-          display: grid;
-        }
-
-        .mobile-nav {
-          position: fixed;
-          z-index: 18;
-          inset: 0;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          gap: 13px;
-          padding: 100px 28px 36px;
-          color: white;
-          background: rgba(7, 27, 45, 0.98);
-          transform: translateY(-104%);
-          visibility: hidden;
-          transition: transform 240ms ease, visibility 240ms ease;
-        }
-
-        .mobile-nav.open {
-          transform: none;
-          visibility: visible;
-        }
-
-        .mobile-nav a {
-          padding: 15px 2px;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-          font-size: 1.2rem;
-          font-weight: 650;
-        }
-
-        .hero-grid {
-          grid-template-columns: 1fr;
-          gap: 55px;
-          padding-top: 155px;
-        }
-
-        .hero-copy {
-          max-width: 720px;
-        }
-
-        .product-stage {
-          width: min(650px, 92%);
-          margin-inline: auto;
-        }
-
-        .role-strip .container {
-          grid-template-columns: 1fr repeat(3, auto);
-          gap: 18px;
-        }
-
-        .role-pill {
-          padding-left: 18px;
-        }
-
-        .overview-grid,
-        .privacy-panel {
-          grid-template-columns: 1fr;
-        }
-
-        .overview-grid {
-          gap: 55px;
-        }
-
-        .features-head {
-          display: block;
-        }
-
-        .features-head .section-intro {
-          max-width: 620px;
-          margin-top: 22px;
-        }
-
-        .feature-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-
-        .feature-card.primary {
-          grid-row: span 2;
-        }
-
-        .audience-grid {
-          grid-template-columns: 1fr;
-          gap: 45px;
-        }
-
-        .audience-intro {
-          position: static;
-        }
-      }
-
-      @media (max-width: 700px) {
-        .container {
-          width: min(100% - 30px, 1180px);
-        }
-
-        .nav-shell {
-          min-height: 76px;
-        }
-
-        .hero {
-          min-height: auto;
-        }
-
-        .hero-grid {
-          grid-template-columns: minmax(0, 1fr);
-          padding-top: 132px;
-          padding-bottom: 78px;
-        }
-
-        h1 {
-          font-size: clamp(3.15rem, 16vw, 4.7rem);
-        }
-
-        .hero-copy > p {
-          font-size: 1rem;
-        }
-
-        .hero-actions {
-          align-items: stretch;
-          flex-direction: column;
-        }
-
-        .button {
-          width: 100%;
-        }
-
-        .product-stage {
-          width: 100%;
-          min-height: 420px;
-        }
-
-        .product-window {
-          min-height: 390px;
-          transform: none;
-        }
-
-        .window-body {
-          grid-template-columns: 78px 1fr;
-          min-height: 336px;
-        }
-
-        .mini-sidebar {
-          padding-inline: 9px;
-        }
-
-        .mini-nav-item {
-          justify-content: center;
-          padding: 10px 2px;
-        }
-
-        .mini-nav-item span {
-          display: none;
-        }
-
-        .dashboard {
-          padding: 21px 15px 15px;
-        }
-
-        .floating-report {
-          right: 12px;
-          bottom: -34px;
-          width: 172px;
-        }
-
-        .role-strip .container {
-          grid-template-columns: repeat(3, 1fr);
-          min-height: 108px;
-        }
-
-        .role-strip p {
-          display: none;
-        }
-
-        .role-pill {
-          flex-direction: column;
-          justify-content: center;
-          gap: 6px;
-          padding-left: 0;
-          font-size: 0.72rem;
-        }
-
-        .role-pill:first-of-type {
-          border-left: 0;
-        }
-
-        .section {
-          padding: 82px 0;
-        }
-
-        .section-title {
-          font-size: clamp(2.35rem, 12vw, 3.4rem);
-        }
-
-        .care-path {
-          min-height: 0;
-          padding: 30px 23px;
-        }
-
-        .features-head {
-          margin-bottom: 35px;
-        }
-
-        .feature-grid {
-          grid-template-columns: 1fr;
-          grid-auto-rows: auto;
-        }
-
-        .feature-card,
-        .feature-card.primary {
-          min-height: 250px;
-          grid-row: auto;
-        }
-
-        .feature-icon {
-          margin-bottom: 42px;
-        }
-
-        .record-stack {
-          height: 190px;
-          margin-top: 45px;
-        }
-
-        .audience-card {
-          grid-template-columns: 52px 1fr;
-          gap: 15px;
-          padding: 23px 20px;
-        }
-
-        .audience-icon {
-          width: 52px;
-          height: 52px;
-          border-radius: 16px;
-        }
-
-        .audience-card > svg {
-          display: none;
-        }
-
-        .privacy-panel {
-          gap: 42px;
-          padding: 42px 23px;
-        }
-
-        .privacy-points {
-          grid-template-columns: 1fr;
-        }
-
-        .closing {
-          padding: 92px 0;
-        }
-
-        .footer-top,
-        .footer-bottom {
-          align-items: flex-start;
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .footer-top {
-          padding: 38px 0;
-        }
-
-        .footer-bottom {
-          min-height: 96px;
-          padding: 23px 0;
-        }
-      }
-
       @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-        }
-
-        .reveal {
-          opacity: 1;
-          transform: none;
-        }
+        html { scroll-behavior: auto; }
+        .reveal { opacity: 1; transform: none; transition: none; }
+        .button:hover { transform: none; }
       }
     </style>
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header class="site-header">
       <div class="container nav-shell">
-        <a class="brand" href="#top" aria-label="Carefolio home">
+        <a class="brand" href="#top" aria-label="YourHealthFolio home">
           <span class="brand-mark" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </span>
-          carefolio<span class="brand-dot">.</span>
+          YourHealthFolio<span class="brand-dot">.</span>
         </a>
         <nav class="desktop-nav" aria-label="Primary navigation">
-          <a href="#overview">How it works</a>
-          <a href="#features">What’s inside</a>
-          <a href="#people">For everyone</a>
-          <a href="#privacy">Privacy</a>
-          <a class="nav-cta" href="#people">Explore Carefolio</a>
+          <a href="#patients">Patients</a>
+          <a href="#doctors">Doctors</a>
+          <a href="#clinics">Clinics</a>
+          <a href="#trust">Privacy</a>
+          <a class="nav-cta" href="#contact">Contact us</a>
         </nav>
         <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-navigation">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
         </button>
       </div>
       <nav class="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
-        <a href="#overview">How it works</a>
-        <a href="#features">What’s inside</a>
-        <a href="#people">For everyone</a>
-        <a href="#privacy">Privacy</a>
+        <a href="#patients">For patients</a>
+        <a href="#doctors">For doctors</a>
+        <a href="#clinics">For clinics</a>
+        <a href="#trust">Privacy and security</a>
+        <a class="button button-primary" href="#contact">Contact us</a>
       </nav>
     </header>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="container hero-grid">
-          <div class="hero-copy reveal visible">
-            <span class="eyebrow">Your Health Portfolio</span>
+          <div class="hero-copy">
+            <span class="eyebrow">For patients, doctors and clinics</span>
             <h1 id="hero-title">Your health.<br />One connected <span>story.</span></h1>
             <p>
-              Carefolio brings records, prescriptions, reports, and care teams together—so every conversation starts with context.
+              YourHealthFolio keeps prescriptions, vaccinations, lab reports and appointments in one place — and lets patients ask an AI assistant about their own records.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#overview">
-                See how it works
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
+              <a class="button button-primary" href="#patients">
+                Watch the product tour
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
               </a>
-              <a class="button button-secondary" href="#people">Find your view</a>
+              <a class="button button-ghost" href="mailto:support@yourhealthfolio.in?subject=YourHealthFolio%20enquiry">Talk to us</a>
             </div>
-            <div class="hero-note">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M12 3 5 6v5c0 4.8 2.7 8.2 7 10 4.3-1.8 7-5.2 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" />
-                <path d="m9.5 12 1.6 1.6 3.7-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              Designed around clear roles and purposeful access.
+            <div class="hero-proof">
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5 6v5c0 4.8 2.7 8.2 7 10 4.3-1.8 7-5.2 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><path d="m9.5 12 1.6 1.6 3.7-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>Encrypted personal data</span>
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 11V7a4 4 0 0 1 8 0v4M6 11h12v10H6V11Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>Patients control sharing</span>
+              <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12l4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>A workspace for every role</span>
             </div>
           </div>
 
-          <div class="product-stage reveal visible" aria-label="Carefolio workspace preview">
-            <div class="product-window">
-              <div class="window-top">
-                <div class="mini-brand">
-                  <span aria-hidden="true">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-                      <path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </span>
-                  carefolio.
-                </div>
-                <span class="window-status">Connected care</span>
-              </div>
-              <div class="window-body">
-                <aside class="mini-sidebar" aria-label="Preview navigation">
-                  <div class="mini-avatar">AG</div>
-                  <div class="mini-nav-item active"><i></i><span>Overview</span></div>
-                  <div class="mini-nav-item"><i></i><span>Records</span></div>
-                  <div class="mini-nav-item"><i></i><span>Reports</span></div>
-                  <div class="mini-nav-item"><i></i><span>Profile</span></div>
-                </aside>
-                <div class="dashboard">
-                  <span class="dashboard-label">My health overview</span>
-                  <h3>Good morning.</h3>
-                  <div class="patient-card">
-                    <div class="mini-avatar">AG</div>
-                    <div>
-                      <b>Your care profile</b>
-                      <small>Patient ID · connected</small>
-                    </div>
-                    <span class="patient-tag">Current</span>
-                  </div>
-                  <div class="timeline-label">
-                    <b>Recent care</b>
-                    <span>View all records</span>
-                  </div>
-                  <div class="record-list">
-                    <div class="record-card">
-                      <b>Annual health review</b>
-                      <small>Prescription · updated recently</small>
-                    </div>
-                    <div class="record-card">
-                      <b>Diagnostic report</b>
-                      <small>Lab report · ready to review</small>
-                    </div>
-                    <div class="record-card">
-                      <b>Follow-up note</b>
-                      <small>Care plan · shared with your doctor</small>
-                    </div>
-                  </div>
-                </div>
+          <div class="hero-stage">
+            <div class="frame" data-hero>
+              <div class="frame-bar" aria-hidden="true"><i></i><i></i><i></i><span class="frame-title">Patient workspace · Ask YourHealthFolio AI</span></div>
+              <div class="frame-video">
+                <video muted playsinline loop preload="metadata" poster="assets/videos/patient-ai.jpg" aria-label="Product video: a patient asks the YourHealthFolio AI assistant which of their medicines need care during dengue, and gets an answer based on their own prescriptions and lab reports.">
+                  <source src="assets/videos/patient-ai.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
-            <div class="floating-report">
-              <span aria-hidden="true">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                  <path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
-                  <path d="M14 3v5h5M10 13h5M10 17h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-                </svg>
-              </span>
-              <b>Everything has a place.</b>
-              <small>Reports and records stay part of the same care story.</small>
+            <div class="hero-badge">
+              <span aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3ZM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z" fill="currentColor" /></svg></span>
+              <div><b>AI that knows your records</b><small>Answers cite your own prescriptions and reports.</small></div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="role-strip" aria-label="Carefolio audiences">
+      <div class="index-strip">
         <div class="container">
-          <p>Your Health Portfolio</p>
-          <div class="role-pill">
-            <span aria-hidden="true">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8" /><path d="M5.5 20c.5-4 2.8-6 6.5-6s6 2 6.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-            </span>
-            Patients
-          </div>
-          <div class="role-pill">
-            <span aria-hidden="true">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M7 3v5a5 5 0 0 0 10 0V3M12 13v2a5 5 0 0 0 5 5h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><circle cx="19" cy="18" r="2" stroke="currentColor" stroke-width="1.8" /></svg>
-            </span>
-            Doctors
-          </div>
-          <div class="role-pill">
-            <span aria-hidden="true">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 21V7l8-4 8 4v14M9 21v-4h6v4M8 9h2m4 0h2m-8 4h2m4 0h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </span>
-            Clinics
-          </div>
+          <nav class="index-card" aria-label="Features">
+            <a href="#patients" data-jump="patients" data-index="0"><span class="index-icon ai" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3Z" fill="currentColor" /></svg></span><span>AI health assistant<small>Patients</small></span></a>
+            <a href="#patients" data-jump="patients" data-index="1"><span class="index-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M9 3v6l-4 8a2.8 2.8 0 0 0 2.5 4h9a2.8 2.8 0 0 0 2.5-4l-4-8V3M8 13h8M8 3h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span>Diagnostic reports<small>Patients</small></span></a>
+            <a href="#patients" data-jump="patients" data-index="2"><span class="index-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.8" /><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.8" /><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8" /><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4" stroke="currentColor" stroke-width="1.8" /></svg></span><span>Share with another doctor<small>Patients</small></span></a>
+            <a href="#patients" data-jump="patients" data-index="3"><span class="index-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8" /><path d="M3 10h18M8 3v4m8-4v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg></span><span>Book appointments<small>Patients</small></span></a>
+            <a href="#doctors" data-jump="doctors" data-index="0"><span class="index-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><path d="M9 10h6m-6 4h6m-6 4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg></span><span>Prescriptions, PDF &amp; print<small>Doctors</small></span></a>
+            <a href="#doctors" data-jump="doctors" data-index="1"><span class="index-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="m18 2 4 4M17 7l3-3M19 9 8.7 19.3a2.4 2.4 0 0 1-3.4 0l-.6-.6a2.4 2.4 0 0 1 0-3.4L15 5M9 11l4 4M5 19l-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span>Vaccinations<small>Doctors</small></span></a>
+            <a href="#doctors" data-jump="doctors" data-index="2"><span class="index-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8" /><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg></span><span>Schedules &amp; appointments<small>Doctors</small></span></a>
+            <a href="#clinics" data-jump="clinics" data-index="0"><span class="index-icon" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M4 21V7l8-4 8 4v14M9 21v-5h6v5M8 9h2m4 0h2m-8 4h2m4 0h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span><span>Clinic dashboard<small>Clinics</small></span></a>
+          </nav>
         </div>
-      </section>
+      </div>
 
-      <section class="section" id="overview" aria-labelledby="overview-title">
-        <div class="container overview-grid">
-          <div class="care-path reveal">
-            <div class="care-path-head">
-              <div>
-                <small>Your care path</small>
-                <h3>Context that keeps moving.</h3>
-              </div>
-              <span class="path-number">01 — 03</span>
-            </div>
-            <div class="path-item">
-              <span class="path-icon" aria-hidden="true">
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-3.7 7-10V6l-7-3-7 3v5c0 6.3 7 10 7 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><path d="M9 11h6M12 8v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-              </span>
-              <div><b>Build your health story</b><p>Keep care information attached to one clear patient profile.</p></div>
-            </div>
-            <div class="path-item">
-              <span class="path-icon" aria-hidden="true">
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M7 3h10v18H7V3Z" stroke="currentColor" stroke-width="1.8" /><path d="M10 8h4m-4 4h4m-4 4h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-              </span>
-              <div><b>Add the clinical context</b><p>Bring prescriptions, reports, and follow-up notes into the same timeline.</p></div>
-            </div>
-            <div class="path-item">
-              <span class="path-icon" aria-hidden="true">
-                <svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 2a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 21c.4-4.6 2.4-7 6-7s5.6 2.4 6 7m0-5c3.8 0 5.8 1.7 6 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-              </span>
-              <div><b>Keep the right people aligned</b><p>Give patients, doctors, and clinics a view shaped around their role.</p></div>
-            </div>
-          </div>
-
-          <div class="overview-copy reveal">
-            <div class="section-kicker">One continuous record</div>
-            <h2 class="section-title" id="overview-title">See the whole story, not scattered moments.</h2>
-            <p class="section-intro">
-              Health information becomes more useful when it is easy to find, easy to understand, and ready for the next conversation.
-            </p>
-            <div class="benefit-list">
-              <div class="benefit">
-                <span class="benefit-number">01</span>
-                <div><b>Continuity between appointments</b><p>Follow the thread from diagnosis to prescription to the next review.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-number">02</span>
-                <div><b>Less searching, more understanding</b><p>Reports and records live in one familiar workspace.</p></div>
-              </div>
-              <div class="benefit">
-                <span class="benefit-number">03</span>
-                <div><b>Care shaped to each role</b><p>Everyone sees the information and tools relevant to their work.</p></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section features" id="features" aria-labelledby="features-title">
+      <!-- ===================== Patients ===================== -->
+      <section class="section patients" id="patients" aria-labelledby="patients-title">
         <div class="container">
-          <div class="features-head reveal">
+          <div class="section-head reveal">
             <div>
-              <div class="section-kicker">Built for the everyday</div>
-              <h2 class="section-title" id="features-title">The essentials of care, thoughtfully connected.</h2>
+              <span class="role-tag"><span aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="2" /><path d="M5.5 20c.5-4 2.8-6 6.5-6s6 2 6.5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg></span>For patients</span>
+              <h2 class="section-title" id="patients-title" style="margin-top: 18px">Your records, explained — and always with you.</h2>
             </div>
-            <p class="section-intro">A calm workspace for the information people return to most.</p>
+            <p class="section-intro">Every prescription, vaccine and lab report from every doctor, in one place. Ask questions about them, share them on your terms, and book your next visit.</p>
           </div>
-          <div class="feature-grid">
-            <article class="feature-card primary reveal">
-              <span class="feature-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M6 3h9l3 3v15H6V3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><path d="M9 10h6m-6 4h6m-6 4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-              </span>
-              <h3>A record that reads like a story</h3>
-              <p>Organize health events by person and time, so the next step has the context of everything before it.</p>
-              <div class="record-stack" aria-hidden="true">
-                <div class="record-sheet"><div class="sheet-top"><strong>Care record</strong><span>Today</span></div><div class="sheet-lines"><i></i><i></i><i></i></div></div>
-                <div class="record-sheet"></div>
+
+          <div class="tour" data-tour="patients">
+            <div class="tour-list" role="tablist" aria-label="Patient features">
+              <button class="tour-item ai-item" role="tab" type="button" aria-selected="true" data-src="assets/videos/patient-ai.mp4" data-poster="assets/videos/patient-ai.jpg" data-label="Patient workspace · Ask YourHealthFolio AI">
+                <span class="tour-num">01</span><b>AI health assistant <span class="ai-pill">AI</span></b>
+                <span class="tour-desc">Ask questions in plain language. Answers come only from your own prescriptions, vaccinations and lab reports — with references to each one.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/patient-reports.mp4" data-poster="assets/videos/patient-reports.jpg" data-label="Patient workspace · Diagnostic reports">
+                <span class="tour-num">02</span><b>All your lab reports</b>
+                <span class="tour-desc">Upload a PDF or simply a phone photo of a report, then open any report in a click.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/patient-share.mp4" data-poster="assets/videos/patient-share.jpg" data-label="Patient workspace · Share health records">
+                <span class="tour-num">03</span><b>Share with another doctor</b>
+                <span class="tour-desc">Pick exactly which records a doctor may see, confirm their Doctor ID, and revoke access whenever you like.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/patient-book.mp4" data-poster="assets/videos/patient-book.jpg" data-label="Patient workspace · Book an appointment">
+                <span class="tour-num">04</span><b>Book appointments</b>
+                <span class="tour-desc">Search by doctor, specialty or clinic, see live free slots and confirm a visit in seconds.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+            </div>
+            <div class="tour-media">
+              <div class="frame">
+                <div class="frame-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="frame-title" data-frame-title>Patient workspace · Ask YourHealthFolio AI</span>
+                  <button class="frame-toggle" type="button" data-toggle aria-label="Pause video">Pause</button>
+                </div>
+                <div class="frame-video">
+                  <video muted playsinline preload="none" poster="assets/videos/patient-ai.jpg" aria-describedby="patients-note"></video>
+                  <button class="play-overlay" type="button" data-play aria-label="Play video"><span aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" /></svg></span></button>
+                </div>
+              </div>
+              <p class="tour-note" id="patients-note">Product videos use a fictional patient and synthetic lab reports.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Doctors ===================== -->
+      <section class="section doctors" id="doctors" aria-labelledby="doctors-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="role-tag"><span aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M7 3v5a5 5 0 0 0 10 0V3M12 13v2a5 5 0 0 0 5 5h1" stroke="currentColor" stroke-width="2" stroke-linecap="round" /><circle cx="19" cy="18" r="2" stroke="currentColor" stroke-width="2" /></svg></span>For doctors</span>
+              <h2 class="section-title" id="doctors-title" style="margin-top: 18px">Less paperwork. More time with patients.</h2>
+            </div>
+            <p class="section-intro">Write clean prescriptions, run vaccination programmes, publish your availability and review records patients share with you — from one workspace.</p>
+          </div>
+
+          <div class="tour" data-tour="doctors">
+            <div class="tour-list" role="tablist" aria-label="Doctor features">
+              <button class="tour-item" role="tab" type="button" aria-selected="true" data-src="assets/videos/doctor-prescription.mp4" data-poster="assets/videos/doctor-prescription.jpg" data-label="Doctor workspace · New prescription">
+                <span class="tour-num">01</span><b>Prescriptions, PDF and print</b>
+                <span class="tour-desc">Write a prescription in seconds, then print it or download a professional, branded PDF.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/doctor-vaccination.mp4" data-poster="assets/videos/doctor-vaccination.jpg" data-label="Doctor workspace · Vaccination programme">
+                <span class="tour-num">02</span><b>Vaccination programmes</b>
+                <span class="tour-desc">Plan multi-dose vaccines, record each dose and let patients get an email reminder a day before it is due.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/doctor-schedule.mp4" data-poster="assets/videos/doctor-schedule.jpg" data-label="Doctor workspace · Appointments and availability">
+                <span class="tour-num">03</span><b>Schedules and appointments</b>
+                <span class="tour-desc">Publish weekly hours once, block a slot when plans change, and see online, phone and walk-in bookings together.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/doctor-shared.mp4" data-poster="assets/videos/doctor-shared.jpg" data-label="Doctor workspace · Shared with me">
+                <span class="tour-num">04</span><b>Records shared with you</b>
+                <span class="tour-desc">Open the reports and prescriptions a patient chooses to share — ideal for referrals and second opinions.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+            </div>
+            <div class="tour-media">
+              <div class="frame">
+                <div class="frame-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="frame-title" data-frame-title>Doctor workspace · New prescription</span>
+                  <button class="frame-toggle" type="button" data-toggle aria-label="Pause video">Pause</button>
+                </div>
+                <div class="frame-video">
+                  <video muted playsinline preload="none" poster="assets/videos/doctor-prescription.jpg" aria-describedby="doctors-note"></video>
+                  <button class="play-overlay" type="button" data-play aria-label="Play video"><span aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" /></svg></span></button>
+                </div>
+              </div>
+              <p class="tour-note" id="doctors-note">Product videos use fictional doctors, patients and records.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Clinics ===================== -->
+      <section class="section clinics" id="clinics" aria-labelledby="clinics-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <span class="role-tag"><span aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M4 21V7l8-4 8 4v14M9 21v-5h6v5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>For clinics</span>
+              <h2 class="section-title" id="clinics-title" style="margin-top: 18px">Every doctor and every patient, in one view.</h2>
+            </div>
+            <p class="section-intro">See what your doctors are recording, which vaccine doses are due and who is booked — and run the front desk without a paper register.</p>
+          </div>
+
+          <div class="tour" data-tour="clinics">
+            <div class="tour-list" role="tablist" aria-label="Clinic features">
+              <button class="tour-item" role="tab" type="button" aria-selected="true" data-src="assets/videos/clinic-overview.mp4" data-poster="assets/videos/clinic-overview.jpg" data-label="Clinic workspace · Overview">
+                <span class="tour-num">01</span><b>Clinic dashboard</b>
+                <span class="tour-desc">Recent prescriptions and doses from every doctor, vaccinations due this week and patients yet to register.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/clinic-patients.mp4" data-poster="assets/videos/clinic-patients.jpg" data-label="Clinic workspace · Clinic patients">
+                <span class="tour-num">02</span><b>A holistic patient view</b>
+                <span class="tour-desc">Each patient's prescriptions and vaccinations across all your doctors, with every record attributed to its author.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+              <button class="tour-item" role="tab" type="button" aria-selected="false" data-src="assets/videos/clinic-frontdesk.mp4" data-poster="assets/videos/clinic-frontdesk.jpg" data-label="Clinic workspace · Phone booking">
+                <span class="tour-num">03</span><b>Front-desk bookings</b>
+                <span class="tour-desc">Book phone callers into live slots — even new callers without an account. Double bookings are prevented automatically.</span>
+                <span class="tour-bar" aria-hidden="true"><i></i></span>
+              </button>
+            </div>
+            <div class="tour-media">
+              <div class="frame">
+                <div class="frame-bar"><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><span class="frame-title" data-frame-title>Clinic workspace · Overview</span>
+                  <button class="frame-toggle" type="button" data-toggle aria-label="Pause video">Pause</button>
+                </div>
+                <div class="frame-video">
+                  <video muted playsinline preload="none" poster="assets/videos/clinic-overview.jpg" aria-describedby="clinics-note"></video>
+                  <button class="play-overlay" type="button" data-play aria-label="Play video"><span aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" /></svg></span></button>
+                </div>
+              </div>
+              <p class="tour-note" id="clinics-note">Product videos use a fictional clinic, doctors and patients.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== Trust ===================== -->
+      <section class="section" id="trust" aria-labelledby="trust-title">
+        <div class="container">
+          <div class="section-head reveal">
+            <div>
+              <div class="section-kicker">Privacy and security</div>
+              <h2 class="section-title" id="trust-title">Health data deserves more than a password.</h2>
+            </div>
+            <p class="section-intro">Privacy is designed into how records are stored, shared and explained — not added afterwards.</p>
+          </div>
+          <div class="trust-grid">
+            <article class="trust-card wide reveal">
+              <span class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8L12 3ZM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z" fill="currentColor" /></svg></span>
+              <div>
+                <h3>A private AI assistant</h3>
+                <p>The assistant reads only the signed-in patient's own records. Names and contact details are replaced with placeholders before any text is sent to the AI model, report files never leave our servers, and questions and answers are not stored.</p>
               </div>
             </article>
-            <article class="feature-card reveal">
-              <span class="feature-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 3v5a4 4 0 0 0 8 0V3M12 12v3a5 5 0 0 0 5 5h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><circle cx="19" cy="18" r="2" stroke="currentColor" stroke-width="1.8" /></svg>
-              </span>
-              <h3>Prescriptions with context</h3>
-              <p>Connect treatment details to the patient and the visit that shaped them.</p>
+            <article class="trust-card reveal">
+              <span class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.8" /><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" /></svg></span>
+              <h3>Encrypted, record by record</h3>
+              <p>Names, contact details, prescriptions, allergies and vaccination details are encrypted with AES-256, each record under its own key managed in AWS KMS.</p>
             </article>
-            <article class="feature-card reveal">
-              <span class="feature-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 3v6l-4 8a2.8 2.8 0 0 0 2.5 4h9a2.8 2.8 0 0 0 2.5-4l-4-8V3M8 13h8M8 3h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-              <h3>Reports ready to revisit</h3>
-              <p>Keep diagnostic reports close to the health timeline instead of buried in downloads.</p>
+            <article class="trust-card reveal">
+              <span class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="18" cy="5" r="3" stroke="currentColor" stroke-width="1.8" /><circle cx="6" cy="12" r="3" stroke="currentColor" stroke-width="1.8" /><circle cx="18" cy="19" r="3" stroke="currentColor" stroke-width="1.8" /><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4" stroke="currentColor" stroke-width="1.8" /></svg></span>
+              <h3>Sharing the patient controls</h3>
+              <p>Patients share individual records with a verified Doctor ID, keep a full sharing history and can revoke access at any time.</p>
             </article>
-            <article class="feature-card reveal">
-              <span class="feature-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 21V7l8-4 8 4v14M9 21v-5h6v5M8 9h2m4 0h2m-8 4h2m4 0h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-              <h3>Clinic coordination</h3>
-              <p>Bring doctors, patients, and clinical records together in one shared clinic workspace.</p>
+            <article class="trust-card reveal">
+              <span class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 4.8 2.7 8.2 7 10 4.3-1.8 7-5.2 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><path d="m9.5 12 1.6 1.6 3.7-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+              <h3>A workspace for each role</h3>
+              <p>Patients, doctors, clinics and support staff each see only what their role needs. Support tools have no access to prescriptions or reports.</p>
             </article>
-            <article class="feature-card reveal">
-              <span class="feature-icon" aria-hidden="true">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 3 5 6v5c0 4.8 2.7 8.2 7 10 4.3-1.8 7-5.2 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><path d="m9.5 12 1.6 1.6 3.7-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-              <h3>Purposeful access</h3>
-              <p>Separate patient, doctor, clinic, and support responsibilities by design.</p>
+            <article class="trust-card reveal">
+              <span class="icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /><path d="M14 3v5h5M10 13h5M10 17h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg></span>
+              <h3>Reports stay private</h3>
+              <p>Lab reports are stored in private, encrypted storage and are opened only by their owner or a doctor they have shared them with.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="section audiences" id="people" aria-labelledby="people-title">
-        <div class="container audience-grid">
-          <div class="audience-intro reveal">
-            <div class="section-kicker">Care has many perspectives</div>
-            <h2 class="section-title" id="people-title">One system. A view for every role.</h2>
-            <p class="section-intro">Carefolio keeps each experience focused, without losing the thread that connects them.</p>
+      <!-- ===================== More ===================== -->
+      <section class="more" aria-labelledby="more-title">
+        <div class="container">
+          <div class="section-head reveal" style="margin-bottom: 36px">
+            <div>
+              <div class="section-kicker">And there's more</div>
+              <h2 class="section-title" id="more-title" style="font-size: clamp(1.7rem, 2.8vw, 2.3rem)">The small things that make care easier.</h2>
+            </div>
           </div>
-          <div class="audience-list">
-            <article class="audience-card reveal" data-number="1">
-              <span class="audience-icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.5" stroke="currentColor" stroke-width="1.8" /><path d="M5.5 20c.5-4 2.8-6 6.5-6s6 2 6.5 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-              </span>
-              <div><h3>For patients</h3><p>See health records, diagnostic reports, prescriptions, and profile details in one personal space.</p></div>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </article>
-            <article class="audience-card reveal" data-number="2">
-              <span class="audience-icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 24 24" fill="none"><path d="M7 3v5a5 5 0 0 0 10 0V3M12 13v2a5 5 0 0 0 5 5h1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><circle cx="19" cy="18" r="2" stroke="currentColor" stroke-width="1.8" /></svg>
-              </span>
-              <div><h3>For doctors</h3><p>Connect with patients, review care history, and add prescriptions with the right context close at hand.</p></div>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </article>
-            <article class="audience-card reveal" data-number="3">
-              <span class="audience-icon" aria-hidden="true">
-                <svg width="25" height="25" viewBox="0 0 24 24" fill="none"><path d="M4 21V7l8-4 8 4v14M9 21v-5h6v5M8 9h2m4 0h2m-8 4h2m4 0h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-              </span>
-              <div><h3>For clinics</h3><p>Coordinate clinic doctors and patient care from a shared workspace built around clinical teams.</p></div>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m9 18 6-6-6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </article>
+          <div class="more-grid reveal">
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" /><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg><b>Vaccine reminders</b><span>One email the day before any dose is due, for patients who opt in.</span></div>
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8" /><path d="M7 10h4M7 14h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /><circle cx="16.5" cy="11" r="1.5" fill="currentColor" /></svg><b>Patient IDs</b><span>A permanent 10-character ID connects the right patient to the right doctor.</span></div>
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg><b>Records from any doctor</b><span>Patients can add prescriptions and vaccines from doctors not yet on YourHealthFolio.</span></div>
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.8 2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" /></svg><b>Phone and walk-in bookings</b><span>Reserve a slot for a caller who has no account — no email needed.</span></div>
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8" /><path d="M3 10h18M9 15l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg><b>No double bookings</b><span>Each slot is locked while it is booked, so two people can never take it.</span></div>
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2.5" stroke="currentColor" stroke-width="1.8" /><path d="M11 18h2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg><b>Phone photos welcome</b><span>Scanned reports and phone photos are read by the AI assistant too.</span></div>
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h16v16H4V4Z" stroke="currentColor" stroke-width="1.8" /><path d="M8 9h8M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg><b>Appointment emails</b><span>Patients are emailed when a visit is booked, moved or cancelled.</span></div>
+            <div class="more-item"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm14 10v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg><b>Doctors keep their identity</b><span>Clinic doctors keep individual logins, and every record names its author.</span></div>
           </div>
         </div>
       </section>
 
-      <section class="section privacy" id="privacy" aria-labelledby="privacy-title">
-        <div class="container privacy-panel reveal">
-          <div class="privacy-copy">
-            <div class="section-kicker">Designed with boundaries</div>
-            <h2 id="privacy-title">The right view for the right responsibility.</h2>
-            <p>Carefolio separates everyday care work from support operations, helping each role stay focused on what it needs to do.</p>
+      <!-- ===================== Contact ===================== -->
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <div class="container">
+          <div class="contact-panel reveal">
+            <div>
+              <h2 id="contact-title">Let's talk about your care.</h2>
+              <p>Whether you are a patient, an independent doctor or a clinic, we'd love to hear from you — for a demo, onboarding or any question.</p>
+            </div>
+            <div class="contact-box">
+              <small>Write to us</small>
+              <a class="contact-email" href="mailto:support@yourhealthfolio.in?subject=YourHealthFolio%20enquiry">support@yourhealthfolio.in</a>
+              <div class="contact-actions">
+                <a class="button button-white" href="mailto:support@yourhealthfolio.in?subject=YourHealthFolio%20enquiry">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" /><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
+                  Send an email
+                </a>
+                <button class="button button-glass" type="button" data-copy="support@yourhealthfolio.in">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8" /><path d="M5 15V5a2 2 0 0 1 2-2h10" stroke="currentColor" stroke-width="1.8" /></svg>
+                  Copy address
+                </button>
+              </div>
+              <p class="copy-status" role="status" aria-live="polite"></p>
+            </div>
           </div>
-          <div class="privacy-points">
-            <div class="privacy-point">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3 5 6v5c0 4.8 2.7 8.2 7 10 4.3-1.8 7-5.2 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
-              <b>Role-based workspaces</b><span>Patient, doctor, clinic, and support views stay distinct.</span>
-            </div>
-            <div class="privacy-point">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.8" /><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.8" /></svg>
-              <b>Account-aware access</b><span>Each signed-in experience is tied to a defined role.</span>
-            </div>
-            <div class="privacy-point">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" /><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
-              <b>Clear patient identity</b><span>Patient connections use dedicated IDs and registration details.</span>
-            </div>
-            <div class="privacy-point">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 4h10M9 4V2h6v2m-9 3 1 14h10l1-14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /><path d="M10 11v5m4-5v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
-              <b>Focused support tools</b><span>Account support is kept separate from clinical records.</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="closing" aria-labelledby="closing-title">
-        <div class="container reveal">
-          <div class="closing-mark" aria-hidden="true">
-            <svg width="29" height="29" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-          </div>
-          <h2 id="closing-title">Better context makes room for better care.</h2>
-          <p>Bring the people, records, and next steps of care into one connected story.</p>
-          <a class="button button-primary" href="#top">Discover Carefolio</a>
         </div>
       </section>
     </main>
@@ -1823,70 +646,196 @@
     <footer>
       <div class="container footer-top">
         <div>
-          <a class="brand" href="#top" aria-label="Carefolio home">
-            <span class="brand-mark" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg>
-            </span>
-            carefolio<span class="brand-dot">.</span>
+          <a class="brand" href="#top" aria-label="YourHealthFolio home">
+            <span class="brand-mark" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-6 4 12 2-6h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+            YourHealthFolio<span class="brand-dot">.</span>
           </a>
-          <p style="margin-top: 16px">A thoughtful space for patients, doctors, and clinics to keep care moving forward.</p>
+          <p class="footer-about">One connected space for patients, doctors and clinics to keep care moving forward.</p>
+          <a class="footer-mail" href="mailto:support@yourhealthfolio.in">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="1.8" /><path d="m5 7 7 6 7-6" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
+            support@yourhealthfolio.in
+          </a>
         </div>
         <nav class="footer-links" aria-label="Footer navigation">
-          <a href="#overview">How it works</a>
-          <a href="#features">What’s inside</a>
-          <a href="#people">For everyone</a>
-          <a href="#privacy">Privacy</a>
+          <a href="#patients">Patients</a>
+          <a href="#doctors">Doctors</a>
+          <a href="#clinics">Clinics</a>
+          <a href="#trust">Privacy</a>
+          <a href="#contact">Contact</a>
         </nav>
       </div>
       <div class="container footer-bottom">
-        <span>© <span id="year"></span> Carefolio.</span>
-        <span>Your Health Portfolio · yourhealthfolio.in</span>
+        <span>© <span id="year">2026</span> YourHealthFolio · yourhealthfolio.in</span>
+        <span>Videos show fictional people and synthetic records. AI explanations are informational and do not replace advice from your doctor.</span>
       </div>
     </footer>
 
     <script>
-      const menuButton = document.querySelector(".menu-button");
-      const mobileNavigation = document.querySelector(".mobile-nav");
+      (function () {
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const header = document.querySelector(".site-header");
+        const menuButton = document.querySelector(".menu-button");
+        const mobileNav = document.querySelector(".mobile-nav");
 
-      function closeMenu() {
-        mobileNavigation.classList.remove("open");
-        document.body.classList.remove("menu-open");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Open menu");
-      }
+        // ---- Header and mobile menu ----
+        const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 24);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        function setMenu(open) {
+          mobileNav.classList.toggle("open", open);
+          header.classList.toggle("menu-active", open);
+          document.body.classList.toggle("menu-open", open);
+          menuButton.setAttribute("aria-expanded", String(open));
+          menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        }
+        menuButton.addEventListener("click", () => setMenu(!mobileNav.classList.contains("open")));
+        mobileNav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+        window.addEventListener("keydown", (e) => { if (e.key === "Escape") setMenu(false); });
 
-      menuButton.addEventListener("click", () => {
-        const open = !mobileNavigation.classList.contains("open");
-        mobileNavigation.classList.toggle("open", open);
-        document.body.classList.toggle("menu-open", open);
-        menuButton.setAttribute("aria-expanded", String(open));
-        menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      });
+        document.getElementById("year").textContent = new Date().getFullYear();
 
-      mobileNavigation.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
-      window.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") closeMenu();
-      });
+        // ---- Reveal on scroll ----
+        const reveals = document.querySelectorAll(".reveal");
+        if (reducedMotion || !("IntersectionObserver" in window)) {
+          reveals.forEach((el) => el.classList.add("visible"));
+        } else {
+          const io = new IntersectionObserver((entries) => entries.forEach((entry) => {
+            if (entry.isIntersecting) { entry.target.classList.add("visible"); io.unobserve(entry.target); }
+          }), { threshold: 0.12 });
+          reveals.forEach((el) => io.observe(el));
+        }
 
-      document.getElementById("year").textContent = new Date().getFullYear();
+        // ---- Hero video: plays only while on screen ----
+        const heroVideo = document.querySelector("[data-hero] video");
+        if (heroVideo && !reducedMotion && "IntersectionObserver" in window) {
+          new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) heroVideo.play().catch(() => {}); else heroVideo.pause();
+          }, { threshold: 0.3 }).observe(heroVideo);
+        }
 
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (reducedMotion || !("IntersectionObserver" in window)) {
-        document.querySelectorAll(".reveal").forEach((element) => element.classList.add("visible"));
-      } else {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-              }
+        // ---- Product tours: tabs switch the clip; clips advance on their own ----
+        const tours = {};
+        document.querySelectorAll("[data-tour]").forEach((root) => {
+          const name = root.dataset.tour;
+          const video = root.querySelector("video");
+          const frame = root.querySelector(".frame");
+          const title = root.querySelector("[data-frame-title]");
+          const toggle = root.querySelector("[data-toggle]");
+          const playButton = root.querySelector("[data-play]");
+          const items = Array.from(root.querySelectorAll(".tour-item"));
+          const panelId = name + "-player";
+          const panel = root.querySelector(".tour-media");
+          panel.id = panelId;
+          panel.setAttribute("role", "tabpanel");
+          let index = 0;
+          let inView = false;
+          let userPaused = reducedMotion;
+
+          items.forEach((item, i) => {
+            item.id = name + "-tab-" + i;
+            item.setAttribute("aria-controls", panelId);
+            item.addEventListener("click", () => { userPaused = false; select(i, true); });
+            item.addEventListener("keydown", (e) => {
+              const k = e.key;
+              if (!["ArrowDown", "ArrowRight", "ArrowUp", "ArrowLeft", "Home", "End"].includes(k)) return;
+              e.preventDefault();
+              let n = index;
+              if (k === "ArrowDown" || k === "ArrowRight") n = (index + 1) % items.length;
+              if (k === "ArrowUp" || k === "ArrowLeft") n = (index - 1 + items.length) % items.length;
+              if (k === "Home") n = 0;
+              if (k === "End") n = items.length - 1;
+              items[n].focus();
+              userPaused = false;
+              select(n, true);
             });
-          },
-          { threshold: 0.12 },
-        );
-        document.querySelectorAll(".reveal:not(.visible)").forEach((element) => observer.observe(element));
-      }
+          });
+
+          function setPausedUI(paused) {
+            frame.classList.toggle("is-paused", paused);
+            toggle.textContent = paused ? "Play" : "Pause";
+            toggle.setAttribute("aria-label", paused ? "Play video" : "Pause video");
+          }
+
+          function play() {
+            const p = video.play();
+            if (p) p.then(() => setPausedUI(false)).catch(() => setPausedUI(true));
+          }
+
+          function select(i, autoplay) {
+            index = i;
+            items.forEach((item, j) => {
+              const on = j === i;
+              item.setAttribute("aria-selected", String(on));
+              item.tabIndex = on ? 0 : -1;
+              item.style.setProperty("--p", 0);
+            });
+            const item = items[i];
+            root.querySelector(".tour-media").setAttribute("aria-labelledby", item.id);
+            title.textContent = item.dataset.label;
+            video.poster = item.dataset.poster;
+            video.src = item.dataset.src;
+            video.setAttribute("aria-label", "Product video: " + item.querySelector("b").textContent.trim() + ". " + item.querySelector(".tour-desc").textContent.trim());
+            if (autoplay && !userPaused) play(); else setPausedUI(true);
+          }
+
+          video.addEventListener("timeupdate", () => {
+            if (video.duration) items[index].style.setProperty("--p", video.currentTime / video.duration);
+          });
+          video.addEventListener("ended", () => {
+            items[index].style.setProperty("--p", 1);
+            if (inView && !userPaused && !reducedMotion) select((index + 1) % items.length, true);
+            else setPausedUI(true);
+          });
+          video.addEventListener("click", () => toggle.click());
+          toggle.addEventListener("click", () => {
+            if (video.paused || video.ended) { userPaused = false; if (!video.src) select(index, true); else play(); }
+            else { userPaused = true; video.pause(); setPausedUI(true); }
+          });
+          playButton.addEventListener("click", () => { userPaused = false; if (!video.currentSrc) select(index, true); else play(); });
+
+          // Load and play only while the section is on screen.
+          setPausedUI(true);
+          items.forEach((item, j) => (item.tabIndex = j === 0 ? 0 : -1));
+          if ("IntersectionObserver" in window) {
+            new IntersectionObserver(([entry]) => {
+              inView = entry.isIntersecting;
+              if (inView) {
+                if (!video.currentSrc) select(index, !userPaused);
+                else if (!userPaused) play();
+              } else if (!video.paused) {
+                video.pause();
+                setPausedUI(true);
+              }
+            }, { threshold: 0.35 }).observe(frame);
+          } else {
+            select(0, false);
+          }
+
+          tours[name] = (i) => { userPaused = false; select(i, true); };
+        });
+
+        // Feature index links open the matching clip.
+        document.querySelectorAll("[data-jump]").forEach((link) => {
+          link.addEventListener("click", () => {
+            const go = tours[link.dataset.jump];
+            if (go) go(Number(link.dataset.index || 0));
+          });
+        });
+
+        // ---- Copy email ----
+        const copyButton = document.querySelector("[data-copy]");
+        const status = document.querySelector(".copy-status");
+        copyButton.addEventListener("click", async () => {
+          const text = copyButton.dataset.copy;
+          try {
+            await navigator.clipboard.writeText(text);
+            status.textContent = "Email address copied.";
+          } catch (e) {
+            status.textContent = "Our address is " + text;
+          }
+          setTimeout(() => (status.textContent = ""), 3500);
+        });
+      })();
     </script>
   </body>
 </html>
