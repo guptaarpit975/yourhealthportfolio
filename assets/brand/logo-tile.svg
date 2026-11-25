@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <title>YourHealthFolio</title>
+  <rect width="100" height="100" rx="26" fill="#ffffff"/>
+  <g transform="translate(10.749 13.635) scale(0.096203)">
+    <rect x="105" y="20" width="398" height="595" rx="46" fill="#246ce5"/>
+    <rect x="315" y="138" width="398" height="598" rx="46" fill="#1e3d76"/>
+    <polyline points="32,437 232,437 278,352 333,490 397,240 466,597 540,337 585,437 785,437" fill="none" stroke="#63b0fb" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
